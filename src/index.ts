@@ -2,6 +2,9 @@ import express from 'express'
 import * as dotenv from 'dotenv'
 import cors from 'cors'
 
+import { authorRouter } from './author/author.router'
+import { bookRouter } from './book/book.router'
+
 dotenv.config()
 
 if(!process.env.PORT){
@@ -20,6 +23,9 @@ app.get('/', (_req, res) => {
         message: 'Hello World!'
     })
 })
+
+app.use('/api/authors', authorRouter)
+app.use('/api/books', bookRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
