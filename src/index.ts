@@ -1,0 +1,26 @@
+import express from 'express'
+import * as dotenv from 'dotenv'
+import cors from 'cors'
+
+dotenv.config()
+
+if(!process.env.PORT){
+    process.exit(1)
+}
+
+const PORT: number = +process.env.PORT || 8000
+
+const app = express()
+
+app.use(cors())
+app.use(express.json())
+
+app.get('/', (_req, res) => {
+    res.json({
+        message: 'Hello World!'
+    })
+})
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`)
+})
